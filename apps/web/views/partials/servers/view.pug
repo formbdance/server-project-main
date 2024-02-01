@@ -1,0 +1,13 @@
+h4 Сервер  {{$ctrl.server.name}} ({{$ctrl.server.host}})
+uib-tabset
+    uib-tab(heading="Инфо")
+        include tabs/_info
+    uib-tab(heading="Задания" ng-if="$ctrl.server.$resolved")
+        include tabs/_tasks
+    uib-tab(heading="Журналы" ng-if="$ctrl.server.$resolved")
+        include tabs/_journals
+    uib-tab(heading="Графики" ng-if="$ctrl.charts.$resolved")
+        include tabs/_charts
+    uib-tab(heading="Группы" )
+        include tabs/_groups
+        

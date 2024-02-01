@@ -1,0 +1,12 @@
+uib-tabset 
+    uib-tab(heading="Действия пользователей")
+        table.table.table-bordered(
+            server-user-action-table
+            server-id="$ctrl.server._id"
+            style="width: 100%;"
+        )
+            thead
+                tr
+                    th Дата
+                    th Пользователь
+                    th Действие

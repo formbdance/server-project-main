@@ -1,0 +1,44 @@
+h4 Сервер  {{$ctrl.server.name}} ({{$ctrl.server.host}})
+form.form.form-horizontal(name="editServerForm")
+  .form-group(ng-class="{ 'has-error':editServerForm.name.$invalid }")
+    label.control-label.col-md-4 Название
+    .col-md-6
+      input.form-control(name="name", ng-model="$ctrl.server.name", required)
+  .form-group(ng-class="{ 'has-error':editServerForm.host.$invalid }")
+    label.control-label.col-md-4 Host
+    .col-md-6
+      input.form-control(name="host", ng-model="$ctrl.server.host", required)
+  .form-group(ng-class="{ 'has-error':editServerForm.username.$invalid }")
+    label.control-label.col-md-4 Username
+    .col-md-6
+      input.form-control(
+        name="username",
+        ng-model="$ctrl.server.username",
+        required
+      )
+  .form-group(ng-class="{ 'has-error':editServerForm.password.$invalid }")
+    label.control-label.col-md-4 password
+    .col-md-6
+      input.form-control(
+        name="password",
+        ng-model="$ctrl.server.password",
+        required
+      )
+  .form-group(ng-class="{ 'has-error':editServerForm.groupId.$invalid }")
+    label.control-label.col-md-4 Группа
+    .col-md-6
+
+        select(ng-model="$ctrl.server.groupId" class="form-control" required)
+            option(ng-repeat="group in $ctrl.groups" value="{{ group.name }}") {{group.name}} - {{ group.status }}
+
+
+
+
+  a.btn.btn-primary.col-md-offset-4(
+    ng-click="editServerForm.$invalid||$ctrl.save()"
+  ) Сохранить
+  a.btn.btn-danger(
+    ng-if="$ctrl.server._id",
+    ng-click="$ctrl.delete()",
+    style="margin-left: 15px"
+  ) Удалить?

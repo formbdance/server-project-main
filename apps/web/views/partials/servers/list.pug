@@ -1,0 +1,23 @@
+.row
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        h3 Сервера
+          a.label.label-primary.pull-right(
+            ui-sref="servers.create",
+            ui-sref-active="active"
+          ) +
+          a.label.label-primary.pull-right(
+            ng-click="$ctrl.addTasks()"
+            style="margin-right:10px;"
+          ) *
+      .panel-body
+        .list-group
+          button.list-group-item(
+            ng-repeat="server in $ctrl.servers",
+            ui-sref-active="active",
+            ui-sref="servers.view({id:server._id})"
+          )
+            span {{ server.name }}
+  .col-md-9
+    ui-view

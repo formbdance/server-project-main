@@ -1,0 +1,26 @@
+{
+  "extends": [
+    "google"
+  ],
+  "parser": "@babel/eslint-parser",
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "require-jsdoc" : 0,
+    "valid-jsdoc": 0,
+    "max-len": ["error", {
+      "code": 100,
+      "comments": 120
+    }],
+    "new-cap": ["error", { 
+      "newIsCap": false,
+      "properties": false
+    }],
+    "no-unused-vars": 0,
+    "no-invalid-this": 0
+  }
+}

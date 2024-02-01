@@ -1,0 +1,40 @@
+doctype html
+html(lang="ru")
+  head
+    title Server Project | Mobilon
+    link(rel="stylesheet", href="/static/bootstrap/dist/css/bootstrap.min.css")
+    script(src="/static/jquery/dist/jquery.min.js")
+    script(src="/static/jgrowl/jquery.jgrowl.min.js")
+    link(rel="stylesheet", href="/static/jgrowl/jquery.jgrowl.min.css")
+    script(src="/static/bootstrap/dist/js/bootstrap.min.js")
+    link(
+      rel="stylesheet",
+      href="/static/datatables.net-bs/css/dataTables.bootstrap.css"
+    )
+    script(src="/static/datatables.net/js/jquery.dataTables.js")
+    script(src="/static/datatables.net-bs/js/dataTables.bootstrap.js")
+    script(src="/static/moment/min/moment-with-locales.min.js")
+    script(src="/static/angular/angular.min.js")
+    script(src="/static/angular-resource/angular-resource.min.js")
+    script(src="/static/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js")
+    script(src="/static/@uirouter/angularjs/release/angular-ui-router.min.js")
+    script(src="/static/chart.js/dist/chart.umd.js")
+    script(defer, src="/public/dist/runtime.bundle.js")
+    script(defer, src="/public/dist/main.bundle.js")
+
+  body(ng-app="test_project")
+    nav.navbar.navbar-inverse
+      a.navbar-brand(href="/") Mobilon
+      a.navbar-text(href="/") Server Project
+      ul.nav.navbar-nav
+        li
+          a test
+      ul.nav.navbar-nav.pull-right
+        li
+          a test user
+    .container
+      .row
+        ul.nav.nav-pills.nav-menu
+          li(ui-sref="servers", ui-sref-active="active")
+            a(href="#") Сервера
+        ui-view

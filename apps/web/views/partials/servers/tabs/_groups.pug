@@ -1,0 +1,61 @@
+uib-tabset 
+    uib-tab(heading="Редактор групп")
+        table.table.table-bordered(
+            server-actual-groups-table
+            style="width: 100%;"
+        )
+        div(style="display:flex;")
+            select(ng-model="$ctrl.selectedGroup" class="form-control" )
+                option( value='' ng-if="!$ctrl.selectedGroup") Выберите группу из списка
+                option(ng-repeat="group in $ctrl.groups" value="{{ group._id }}") {{group.name}} - {{ group.status }}
+            a.btn.btn-danger.pull-right(
+                ng-click="$ctrl.delGroup($ctrl.selectedGroup)"
+                ng-if="$ctrl.selectedGroup"
+                style="margin-left: 30px;"
+
+            ) Удалить
+        div(style="margin-top:10px; width: 50%;" ng-if="$ctrl.selectedGroup")
+            form.form(
+                name="editNamedForm"
+            )
+                .form-group(ng-class="{ 'has-error':editNamedForm.name.$invalid }")
+                    label.control-label Изменить название
+                    input.form-control(name="name", ng-model="$ctrl.group.name", required)
+                .form-group()
+                    a.btn.btn-primary(
+                        ng-click="editNamedForm.$invalid||$ctrl.updateGroup($ctrl.selectedGroup)"
+                    ) Изменить 
+
+    uib-tab(heading="Добавление групп")
+        form.form.form-horizontal.col-md-6(
+            name="editGroupForm"
+            )
+            .form-group(ng-class="{ 'has-error':editGroupForm.name.$invalid }")
+                label.control-label Наименование группы
+                input.form-control(name="name", ng-model="$ctrl.group.name", required)
+            .form-group(ng-class="{ 'has-error':editGroupForm.groupStatus.$invalid }")
+                label.control-label Статус группы
+                select.form-control(
+                            name="groupStatus",
+                            ng-model="$ctrl.group.status",
+                            required
+                        )
+                            option(value="") Выбрать статус
+                            option(value="development") В разработке
+                            option(value="release") Релиз
+                            option(value="beta") Бета-тест
+            .form-group()
+                a.btn.btn-primary(
+                    ng-click="editGroupForm.$invalid||$ctrl.addGroup(editGroupForm)"
+
+                ) Сохранить 
+
+
+ 
+
+
+
+
+                         
+
+
