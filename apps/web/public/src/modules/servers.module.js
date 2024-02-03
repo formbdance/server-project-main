@@ -41,7 +41,59 @@ export const serversModule = angular.module('servers',[])
             }
             
     }]
-}).component('serversView', {
+})
+.component('groupControl', {
+  templateUrl: '/partials/servers/view',
+  controller:[
+      'NotificationService',
+      'Groups',
+      function(NotificationService, Groups){
+          this.groups = Groups.getGroups()
+          this.delGroup = function(form) {
+
+            Groups.delGroup({ id: form }, () => {
+              NotificationService.showSuccess('Запись удалена');
+            });
+
+            Groups.getGroups((res) => {
+              this.groups = res;
+              NotificationService.showSuccess('Данные обновлены');
+            });
+          }
+          this.addGroup = function(form) {
+            if (form.$valid) {
+              var groupName = this.group.name;
+              var groupStatus = this.group.status;
+            }
+            if(confirm('Вы хотите создать группу?')){
+              this.group = new Groups();
+              this.group.$addGroup({name: groupName, status: groupStatus});
+              NotificationService.showSuccess('Группа сохранена');
+            }
+            Groups.getGroups((res) => {
+              this.groups = res;
+              this.group.name = null;
+              NotificationService.showSuccess('Данные обновлены');
+            });
+          };
+          this.updateGroup = function(id) {
+            
+            var data = {
+              id: id,
+              name: this.group.name,
+            }
+              Groups.updateGroup(data, () => {
+                NotificationService.showSuccess('Название обновлено');
+            });
+              Groups.getGroups((res) => {
+                this.groups = res;
+                this.group.name = null;
+                NotificationService.showSuccess('Данные обновлены');
+              });
+          }
+  }]
+})
+.component('serversView', {
     templateUrl: '/partials/servers/view',
     controller:[
         'Server',
@@ -127,7 +179,6 @@ export const serversModule = angular.module('servers',[])
                 });
             }
     }]
-
 })
 .directive('serverUserActionTable', [
       '$compile', 'dataTableLanguage', function($compile, dataTableLanguage) {
