@@ -100,11 +100,9 @@ export const serversModule = angular.module('servers',[])
         '$stateParams',
         'NotificationService',
         'Charts',
-        'Groups',
-        function(Server, $stateParams, NotificationService, Charts, Groups){
+        function(Server, $stateParams, NotificationService, Charts){
             this.server = Server.get({id: $stateParams.id});
             this.charts = Charts.serverCharts({serverId: $stateParams.id});
-            this.groups = Groups.getGroups()
             let self = this
             this.start = function(){
                 if(confirm('Вы хотите запустить сервер?')){
